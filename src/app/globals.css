@@ -1,26 +1,88 @@
 @import "tailwindcss";
 
+/*
+ * Stockora theme: white / light-gray surfaces with a dark green primary color.
+ * Colors are CSS variables so a dark theme can be switched on by adding the
+ * "dark" class to <html> (the toggle button comes in a later phase).
+ */
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #11231a;
+  --surface: #f4f6f5; /* light-gray page background behind cards */
+  --card: #ffffff;
+  --border: #e1e7e3;
+  --muted: #eef2ef;
+  --muted-foreground: #5a6a61;
+  --primary: #14532d; /* dark green */
+  --primary-hover: #0f4224;
+  --primary-foreground: #ffffff;
+  --accent: #e6f2ea; /* soft green highlight (active menu item etc.) */
+  --accent-foreground: #14532d;
+  --danger: #b42318;
+  --danger-soft: #fef3f2;
+  --success: #067647;
+  --success-soft: #ecfdf3;
+  --warning-soft: #fffaeb;
+  --warning: #93370d;
+  --ring: #2f855a;
+}
+
+.dark {
+  --background: #0c1511;
+  --foreground: #e8f0ea;
+  --surface: #0a110e;
+  --card: #111c16;
+  --border: #22332a;
+  --muted: #17251d;
+  --muted-foreground: #93a79a;
+  --primary: #3aa56a;
+  --primary-hover: #2f8f58;
+  --primary-foreground: #04120a;
+  --accent: #173324;
+  --accent-foreground: #9be0b8;
+  --danger: #f97066;
+  --danger-soft: #2a1311;
+  --success: #47cd89;
+  --success-soft: #0f2a1d;
+  --warning-soft: #2a2008;
+  --warning: #fec84b;
+  --ring: #3aa56a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: var(--border);
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+  }
+  /* Urdu and Pashto use an Arabic-script font. */
+  html[dir="rtl"] body {
+    font-family: var(--font-arabic), var(--font-sans);
+  }
 }

@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stockora
 
-## Getting Started
+**Smart Inventory. Smarter Business.**
 
-First, run the development server:
+A QR/barcode-based inventory, POS, accounting and multi-tenant SaaS platform for retail shops.
+Built with Next.js (App Router), TypeScript, Tailwind CSS and Supabase.
+
+> Current status: **Phase 1 (Foundation) is built.** See [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md).
+
+## What works today (Phase 1)
+
+- Sign up (with shop registration), login, logout, forgot/reset password, email verification
+- Every sign-up creates an isolated **shop** + owner membership + default settings + Free plan (one database transaction)
+- Multi-tenant database with Row Level Security (RLS), roles and permissions
+- Shop profile, regional settings (currency, tax, date format, time zone, language) and account settings
+- English, Urdu and Pashto texts (Urdu/Pashto switch the layout to right-to-left)
+- Dashboard shell with sidebar navigation (module pages arrive in later phases)
+
+## Quick start (Windows, VS Code terminal)
 
 ```bash
+npm install
+copy .env.example .env.local     # then open .env.local and fill in the values
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000. If the Supabase variables are missing, the app shows a
+setup guide automatically.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. Create the Supabase project
+1. Go to https://supabase.com → **New project**.
+2. **Project Settings → API**: copy the *Project URL* and the *anon/publishable key* into `.env.local`.
+3. Apply the database migrations (see [docs/DATABASE.md](docs/DATABASE.md)).
+4. **Authentication → URL Configuration**: set *Site URL* to `http://localhost:3000` and add
+   `http://localhost:3000/auth/callback` to *Redirect URLs*.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2. Environment variables
 
-## Learn More
+| Variable | Where it is used | Secret? |
+|---|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | browser + server | no |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | browser + server (protected by RLS) | no |
+| `NEXT_PUBLIC_SITE_URL` | email links (verify / reset) | no |
+| `SUPABASE_SERVICE_ROLE_KEY` | server only, Phase 5+ | **YES — never commit it** |
 
-To learn more about Next.js, take a look at the following resources:
+## Useful commands
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run dev      # start the development server
+npm run lint     # ESLint
+npx tsc --noEmit # TypeScript check
+npm run build    # production build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Documentation
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md) — what is done / what is next
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — how the code is organised and why
+- [docs/DATABASE.md](docs/DATABASE.md) — tables, security, how to apply migrations
+- [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) — GitHub + Vercel + Supabase checklist
+- [docs/DEVELOPMENT_LOG.md](docs/DEVELOPMENT_LOG.md) — history of decisions

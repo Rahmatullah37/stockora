@@ -1,0 +1,12 @@
+-- =============================================================================
+-- Stockora — Development seed data
+-- =============================================================================
+-- Phase 1 has no business tables yet (products, sales, ...), so there are no
+-- example business records to seed. Roles, permissions and subscription plans
+-- are required in every environment, so they live in
+-- supabase/migrations/20261122000002_reference_data.sql instead.
+--
+-- Example products/customers for development will be added here in Phase 2,
+-- once the products tables exist. Never put real credentials in this file.
+-- =============================================================================
+select 1;
