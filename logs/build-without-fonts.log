@@ -1,0 +1,40 @@
+
+> stockora@0.1.0 build
+> next build
+
+▲ Next.js 16.4.6 (Turbopack)
+✓ Running next.config.ts took 47ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.2s
+  Running TypeScript ...
+  Finished TypeScript in 2.7s ...
+  Collecting page data using 1 worker ...
+  Generating static pages using 1 worker (0/15) ...
+  Generating static pages using 1 worker (3/15) 
+  Generating static pages using 1 worker (7/15) 
+  Generating static pages using 1 worker (11/15) 
+✓ Generating static pages using 1 worker (15/15) in 171ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ƒ /_not-found
+├ ƒ /auth/callback
+├ ƒ /dashboard
+├ ƒ /forgot-password
+├ ƒ /login
+├ ƒ /register
+├ ƒ /reset-password
+├ ƒ /settings
+├ ƒ /settings/account
+├ ƒ /settings/regional
+├ ƒ /setup
+└ ƒ /verify-email
+
+
+ƒ Proxy (Middleware)
+
+ƒ  (Dynamic)  server-rendered on demand
+
+exit code: 0
